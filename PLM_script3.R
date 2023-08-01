@@ -12,7 +12,6 @@ library(table1) #for descriptives
 library(rstatix) # Shapiro Wilk and effect size
 
 
-Df <- read_excel("VOP_Data_MG.xlsx")
 
 Df <- read_excel("~/VOP_Data_MG.xlsx")
 View(Df)
@@ -27,7 +26,7 @@ Df$Condition <- ordered(Df$Condition,
 ################# DATA NORMALITY TEST ###############
 
 # Perform correlation analysis between Ischemic_V1 and Ischemic_V2
-correlation <- cor(df$Ischemic_V1, df$Ischemic_V2)
+correlation <- cor(Df$Ischemic_V1, Df$Ischemic_V2)
 # Print the correlation coefficient
 print(correlation)
 
@@ -44,6 +43,7 @@ print(correlation)
 
 correlation <- cor(df$Ischemic_V2, df$PLM_V2)
 print(correlation)
+
 
 
 
@@ -70,7 +70,7 @@ text(x = mean(df$PLM_V1), y = max(df$PLM_V2) - 0.2 * (max(df$PLM_V2) - min(df$PL
      labels = paste("Correlation:", round(correlation, 2)), pos = 3)
 
 # Create Bland-Altman plot for Ischemic_V1 and PLM_V1
-bland.altman.plot(df$Ischemic_V1, df$PLM_V1, xlab = "Mean", ylab = "Difference", main = "Bland-Altman Plot")
+bland.altman.plot(df$Ischemic_V1, df$PLM_V1, xlab = "Mean", ylab = "Difference", main = "Ischemic v1 vs PLM v1")
 # Add correlation value as text
 correlation <- cor(df$Ischemic_V1, df$PLM_V2)
 text(x = mean(df$Ischemic_V1), y = max(df$PLM_V1) - 0.2 * (max(df$PLM_V1) - min(df$PLM_V1)),
@@ -78,7 +78,7 @@ text(x = mean(df$Ischemic_V1), y = max(df$PLM_V1) - 0.2 * (max(df$PLM_V1) - min(
 
 
 # Create Bland-Altman plot for Ischemic_V2 and PLM_V2
-bland.altman.plot(df$Ischemic_V2, df$PLM_V2, xlab = "VOP", ylab = "PLM", main = "Bland-Altman Plot")
+bland.altman.plot(df$Ischemic_V2, df$PLM_V2, xlab = "VOP", ylab = "PLM", main = "Ischemic v2 vs PLM v2")
 # Add correlation value as text
 correlation <- cor(df$Ischemic_V2, df$PLM_V2)
 text(x = mean(df$Ischemic_V2), y = max(df$PLM_V2) - 0.2 * (max(df$PLM_V2) - min(df$PLM_V2)),
